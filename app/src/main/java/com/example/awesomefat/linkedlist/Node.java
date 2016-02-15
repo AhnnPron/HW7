@@ -61,6 +61,11 @@ public class Node
                             ListCore.ll.removeAtIndex(ListCore.ll.indexOf(myself));
                             ListCore.ll.display();
                         }
+                        else if (item.getTitle().equals("ADD"))
+                        {
+                            ListCore.ll.addAtIndex(ListCore.ll.indexOf(myself));
+                            ListCore.ll.display();
+                        }
                         return true;
                     }
                 });

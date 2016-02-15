@@ -23,8 +23,37 @@ public class LinkedList
     {
         //this guy should add a new Node to the list with payload = value at the specified
         //index assuming that index is a legal position in the list.
-        
-    }
+        if(index < 0 || index >= this.count)
+        {
+            System.err.println("Linked List index out of bounds: " + index);
+            return;
+        }
+        else if(index == 0)
+        {
+            return this.addFront();
+        }
+        else if(index == this.count-1)
+        {
+            return this.addEnd();
+        }
+            else
+            {
+                //we have work to do
+                Node nodeBefore = head;
+                Node nodeToAdd= null;
+                Node nodeAfter = null;
+                //position nodeBefore to the node before the node we want to remove
+                for(int i = 0; i < index; i++)
+                {
+                    nodeBefore = nodeBefore.getNextNode();
+                }
+                nodeToAdd = nodeBefore.getNextNode();
+                nodeAfter = nodeToAdd.getNextNode();
+                nodeBefore.setNextNode(nodeToAdd);
+                return;
+            }
+
+            }
     public Node removeAtIndex(int index)
     {
         //is the index out of bounds?
