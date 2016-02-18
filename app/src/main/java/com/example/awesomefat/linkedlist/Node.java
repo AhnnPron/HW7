@@ -61,9 +61,16 @@ public class Node
                             ListCore.ll.removeAtIndex(ListCore.ll.indexOf(myself));
                             ListCore.ll.display();
                         }
-                        else if (item.getTitle().equals("ADD"))
+                        else if (item.getTitle().equals("ADD ABOVE"))
                         {
-                            ListCore.ll.addAtIndex(ListCore.ll.indexOf(myself));
+                            int pos = ListCore.ll.indexOf(myself);
+                            ListCore.ll.addAtIndex(ListCore.newValueEditText.getText().toString(), pos);
+                            ListCore.ll.display();
+                        }
+                        else if (item.getTitle().equals("ADD BELOW"))
+                        {
+                            int pos = ListCore.ll.indexOf(myself);
+                            ListCore.ll.addAtIndex(ListCore.newValueEditText.getText().toString(), pos+1);
                             ListCore.ll.display();
                         }
                         return true;

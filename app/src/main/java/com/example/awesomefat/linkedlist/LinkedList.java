@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 /**
  * Created by awesomefat on 1/28/16.
  */
@@ -19,41 +20,42 @@ public class LinkedList
         this.count = 0;
     }
 
+    public void peek()
+    {
+        Node n = this.head;
+        ListCore.ll.display();
+    }
+
     public void addAtIndex(String value, int index)
     {
         //this guy should add a new Node to the list with payload = value at the specified
         //index assuming that index is a legal position in the list.
-        if(index < 0 || index >= this.count)
+        if(index == 0)
         {
-            System.err.println("Linked List index out of bounds: " + index);
-            return;
+            this.addFront(value);
         }
-        else if(index == 0)
+        else if(index == this.count)
         {
-            return this.addFront();
+            this.addEnd(value);
         }
-        else if(index == this.count-1)
+        else
         {
-            return this.addEnd();
-        }
-            else
-            {
-                //we have work to do
-                Node nodeBefore = head;
-                Node nodeToAdd= null;
-                Node nodeAfter = null;
-                //position nodeBefore to the node before the node we want to remove
-                for(int i = 0; i < index; i++)
-                {
-                    nodeBefore = nodeBefore.getNextNode();
-                }
-                nodeToAdd = nodeBefore.getNextNode();
-                nodeAfter = nodeToAdd.getNextNode();
-                nodeBefore.setNextNode(nodeToAdd);
-                return;
-            }
+            this.count++;
+            Node n = new Node(value);
+            Node nodeBefore = this.head;
+            Node nodeAt;
 
+            for(int i = 0; i < index-1; i++)
+            {
+                nodeBefore = nodeBefore.getNextNode();
             }
+            nodeAt = nodeBefore.getNextNode();
+            n.setNextNode(nodeAt);
+            nodeBefore.setNextNode(n);
+        }
+
+    }
+
     public Node removeAtIndex(int index)
     {
         //is the index out of bounds?
@@ -72,6 +74,7 @@ public class LinkedList
         }
         else
         {
+            this.count--;
             //we have work to do
             Node nodeBefore = head;
             Node nodeToRemove = null;
